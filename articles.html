@@ -1,0 +1,230 @@
+---
+layout: default
+title: Articles
+description: Complete collection of articles and thoughts on distributed systems, data, and technology by Patrick McFadin
+---
+
+<section class="articles-page">
+    <div class="container">
+        <div class="articles-header">
+            <h1>Articles & Writings</h1>
+            <p class="articles-description">
+                A collection of my thoughts on distributed systems, Apache Cassandra, Kubernetes, 
+                AI, and the evolving landscape of data infrastructure.
+            </p>
+        </div>
+
+        <div class="articles-list">
+            {% assign sorted_articles = site.articles | sort: 'date' | reverse %}
+            {% for article in sorted_articles %}
+            <article class="article-item">
+                <div class="article-date">
+                    <span class="year">{{ article.date | date: "%Y" }}</span>
+                    <span class="month-day">{{ article.date | date: "%b %d" }}</span>
+                </div>
+                <div class="article-details">
+                    <h2 class="article-title">
+                        <a href="{{ article.url | relative_url }}">{{ article.title }}</a>
+                    </h2>
+                    <p class="article-excerpt">{{ article.excerpt | strip_html | truncate: 200 }}</p>
+                    <div class="article-meta">
+                        <span class="category">{{ article.category }}</span>
+                        {% if article.reading_time %}
+                        <span class="reading-time">{{ article.reading_time }} min read</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% if site.articles.size == 0 %}
+        <div class="no-articles">
+            <p>Articles coming soon...</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+.articles-page {
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
+    padding: 4rem 2rem;
+}
+
+.articles-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.articles-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.articles-description {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.articles-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.article-item {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.article-item:hover {
+    background: var(--bg-light);
+    margin: 0 -2rem;
+    padding: 2rem;
+    border-radius: 12px;
+    border-bottom: 1px solid transparent;
+}
+
+.article-item:last-child {
+    border-bottom: none;
+}
+
+.article-date {
+    flex-shrink: 0;
+    width: 120px;
+    text-align: center;
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.article-date .year {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.article-date .month-day {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.article-details {
+    flex: 1;
+}
+
+.article-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.article-title a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-title a:hover {
+    color: var(--primary-color);
+}
+
+.article-excerpt {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.article-meta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.category {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.reading-time {
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.reading-time::before {
+    content: "⏱";
+    font-size: 0.8rem;
+}
+
+.no-articles {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .articles-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .article-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .article-date {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .article-date .year {
+        font-size: 1.2rem;
+    }
+    
+    .article-date .month-day {
+        margin-top: 0;
+    }
+    
+    .article-title {
+        font-size: 1.3rem;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+</style>

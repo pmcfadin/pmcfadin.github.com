@@ -1,0 +1,341 @@
+---
+layout: default
+title: Home
+---
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-background">
+        <img src="{{ '/photos/wide field Lassen 2024-08-30.jpeg' | relative_url }}" alt="Wide field astrophotography at Lassen">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-profile">
+            <div class="hero-image">
+                <img src="{{ '/photos/headshot.jpeg' | relative_url }}" alt="Patrick McFadin">
+            </div>
+            <div class="hero-text">
+                <h1>Patrick McFadin</h1>
+                <p class="tagline">Computer Engineer & Distributed Systems Expert</p>
+                <p class="bio">
+                    Building scale infrastructure for over two decades. Apache Cassandra® committer and PMC member, 
+                    ASF Member, and Principal Technical Strategist at IBM. Previously VP of Developer Relations at DataStax. 
+                    Passionate about distributed computing, open source, and pushing the boundaries of 
+                    what's possible with data.
+                </p>
+                <div class="social-links">
+                    <a href="https://twitter.com/{{ site.social.twitter }}" target="_blank" rel="noopener">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/{{ site.social.github }}" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/{{ site.social.linkedin }}" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Book Section -->
+<section id="book" class="section">
+    <div class="container">
+        <div class="book-showcase">
+            <div class="book-cover">
+                <img src="{{ '/photos/managing-cloud-native-data-kubernetes-cover.jpg' | relative_url }}" alt="Managing Cloud Native Data on Kubernetes book cover">
+            </div>
+            <div class="book-content">
+                <h2 class="book-title">Managing Cloud Native Data on Kubernetes</h2>
+                <p class="book-subtitle">Architecting Cloud Native Data Services Using Open Source Technology</p>
+                <p class="book-authors">Co-authored with Jeff Carpenter</p>
+                
+                <div class="book-description">
+                    <p>
+                        Is Kubernetes ready for stateful workloads? This comprehensive guide helps you avoid the 
+                        inefficiencies and duplicative costs of having separate infrastructure for applications and data. 
+                        Learn to leverage open source technologies designed and built for the cloud using Kubernetes as the platform.
+                    </p>
+                    <p>
+                        From storage fundamentals to advanced operators, this practical guide covers everything you need 
+                        to successfully run databases, streaming systems, and analytics workloads on Kubernetes.
+                    </p>
+                </div>
+
+                <div class="book-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Automate data infrastructure deployment with Helm and operators</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Evaluate and integrate data technologies into your stack</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Explore Kubernetes-native databases and streaming systems</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Learn migration strategies for existing data workloads</span>
+                    </div>
+                </div>
+
+                <div class="book-meta">
+                    <div class="meta-item">
+                        <strong>Publisher:</strong> O'Reilly Media
+                    </div>
+                    <div class="meta-item">
+                        <strong>Pages:</strong> 329
+                    </div>
+                    <div class="meta-item">
+                        <strong>Published:</strong> December 2022
+                    </div>
+                    <div class="meta-item">
+                        <strong>Level:</strong> Intermediate to Advanced
+                    </div>
+                </div>
+
+                <div class="book-actions">
+                    <a href="https://www.oreilly.com/library/view/managing-cloud-native/9781098111380/" 
+                       target="_blank" rel="noopener" class="btn btn-primary">
+                        <i class="fas fa-book"></i> Read on O'Reilly
+                    </a>
+                    <a href="https://www.amazon.com/Managing-Cloud-Native-Data-Kubernetes/dp/1098111397" 
+                       target="_blank" rel="noopener" class="btn btn-secondary">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                    <a href="https://www.amazon.com/Managing-Cloud-Native-Data-Kubernetes-ebook/dp/B0BNWFCPGK" 
+                       target="_blank" rel="noopener" class="btn btn-secondary">
+                        <i class="fas fa-tablet-alt"></i> Kindle Edition
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Technologist, Speaker, and Open Source Advocate</p>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8;">
+            <p style="margin-bottom: 1.5rem;">
+                With over 15 years as an Oracle DBA/Developer and extensive experience as Chief Architect 
+                at Hobsons, I've dedicated my career to solving complex distributed systems challenges. 
+                As Chief Evangelist for Apache Cassandra at DataStax, I help organizations build some of 
+                the largest and most exciting deployments in production.
+            </p>
+            <p>
+                I co-authored "Managing Cloud Native Data on Kubernetes" for O'Reilly and travel the world 
+                educating developers about distributed databases, streaming systems, and the future of data 
+                infrastructure. When I'm not working with Cassandra, Pulsar, Spark, or Flink, you'll find 
+                me exploring retro computing or capturing the cosmos through astrophotography.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Professional Interests -->
+<section id="interests" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Professional Interests</h2>
+        <p class="section-subtitle">Technologies and domains I'm passionate about</p>
+        <div class="interests-grid">
+            <div class="interest-card">
+                <div class="interest-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Data at Scale</h3>
+                <p>
+                    Specializing in Apache Cassandra and distributed databases, helping organizations 
+                    handle massive data volumes with high availability and performance.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Distributed Computing</h3>
+                <p>
+                    Building resilient, scalable systems that span data centers and cloud regions. 
+                    Expert in distributed consensus, replication, and fault tolerance.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3>Open Source</h3>
+                <p>
+                    Active contributor to the Apache ecosystem. Committed to building and nurturing 
+                    open source communities that drive innovation.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI + Data Infrastructure</h3>
+                <p>
+                    Exploring the intersection of AI and distributed databases, working on vector 
+                    search and ML-optimized data architectures at DataStax.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">
+                    <i class="fas fa-dharmachakra"></i>
+                </div>
+                <h3>Cloud Native & Kubernetes</h3>
+                <p>
+                    Helping teams navigate the complexity of running stateful workloads on Kubernetes 
+                    and building cloud-native data platforms.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Developer Relations</h3>
+                <p>
+                    Bridging the gap between complex technology and practical implementation through 
+                    education, advocacy, and community building.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hobbies Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Beyond the Code</h2>
+        <p class="section-subtitle">Personal passions and hobbies</p>
+        <div class="interests-grid">
+            <div class="interest-card">
+                <div class="interest-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Astrophotography</h3>
+                <p>
+                    Capturing the beauty of the cosmos through telescopes and cameras. From planetary 
+                    imaging to deep-sky objects, I love exploring and photographing our universe.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h3>Retro Computing</h3>
+                <p>
+                    Collecting and restoring vintage computers and gaming systems. There's something 
+                    magical about the simplicity and innovation of early computing hardware.
+                </p>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>Hardware Hacking</h3>
+                <p>
+                    Building projects with Raspberry Pi, Arduino, and other embedded systems. 
+                    Bridging the physical and digital worlds through creative electronics.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Articles Section -->
+<section id="articles" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Recent Articles & Talks</h2>
+        <p class="section-subtitle">Thoughts on distributed systems, data, and technology</p>
+        <div class="articles-grid">
+            {% assign sorted_articles = site.articles | sort: 'date' | reverse %}
+            {% for article in sorted_articles limit:6 %}
+            <article class="article-card">
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> {{ article.date | date: "%B %d, %Y" }}</span>
+                        {% if article.category %}
+                        <span><i class="far fa-folder"></i> {{ article.category }}</span>
+                        {% endif %}
+                    </div>
+                    <h3><a href="{{ article.url | relative_url }}">{{ article.title }}</a></h3>
+                    <p class="article-excerpt">{{ article.excerpt | strip_html | truncate: 150 }}</p>
+                    <a href="{{ article.url | relative_url }}" class="read-more">
+                        Read more <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% if site.articles.size == 0 %}
+        <div style="text-align: center; padding: 2rem;">
+            <p style="color: var(--text-light);">Articles coming soon...</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="section">
+    <div class="container">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-subtitle">Astrophotography, conferences, and memorable moments</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="{{ '/photos/m101.jpeg' | relative_url }}" alt="M101 Galaxy">
+                <div class="gallery-caption">M101 Pinwheel Galaxy</div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ '/photos/saturn-2017-06-29.jpeg' | relative_url }}" alt="Saturn">
+                <div class="gallery-caption">Saturn - June 29, 2017</div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ '/photos/C2024-a3.jpeg' | relative_url }}" alt="Comet C/2024 A3">
+                <div class="gallery-caption">Comet C/2024 A3</div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ '/photos/Lassen 2024-08-30 Andromeda.jpeg' | relative_url }}" alt="Andromeda Galaxy">
+                <div class="gallery-caption">Andromeda Galaxy at Lassen</div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ '/photos/drilling_rpis.jpeg' | relative_url }}" alt="Raspberry Pi Project">
+                <div class="gallery-caption">Raspberry Pi Cluster Project</div>
+            </div>
+            <div class="gallery-item">
+                <img src="{{ '/photos/cassandra_summit_2015.jpeg' | relative_url }}" alt="Cassandra Summit 2015">
+                <div class="gallery-caption">Cassandra Summit 2015</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's connect and build something amazing</p>
+        <div style="text-align: center; max-width: 600px; margin: 2rem auto;">
+            <p style="margin-bottom: 2rem; line-height: 1.8;">
+                Whether you want to discuss distributed systems, collaborate on open source projects, 
+                or just chat about astrophotography and retro computing, I'd love to hear from you.
+            </p>
+            <div class="social-links" style="justify-content: center;">
+                <a href="https://twitter.com/{{ site.social.twitter }}" target="_blank" rel="noopener" style="background: var(--primary-color); border-color: var(--primary-color);">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://github.com/{{ site.social.github }}" target="_blank" rel="noopener" style="background: var(--text-dark); border-color: var(--text-dark);">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/{{ site.social.linkedin }}" target="_blank" rel="noopener" style="background: #0077b5; border-color: #0077b5;">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

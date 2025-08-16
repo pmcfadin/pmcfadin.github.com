@@ -1,0 +1,208 @@
+---
+layout: default
+---
+
+<article class="article-page">
+    <div class="article-hero">
+        <div class="container">
+            <h1 class="article-title">{{ page.title }}</h1>
+            <div class="article-meta">
+                <span><i class="far fa-calendar"></i> {{ page.date | date: "%B %d, %Y" }}</span>
+                {% if page.category %}
+                <span><i class="far fa-folder"></i> {{ page.category }}</span>
+                {% endif %}
+                {% if page.reading_time %}
+                <span><i class="far fa-clock"></i> {{ page.reading_time }} min read</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="article-body">
+        <div class="container">
+            <div class="article-content">
+                {{ content }}
+            </div>
+            
+            <div class="article-footer">
+                <div class="article-share">
+                    <h4>Share this article</h4>
+                    <div class="share-buttons">
+                        <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="back-to-articles">
+                    <a href="{{ '/#articles' | relative_url }}">← Back to Articles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<style>
+.article-page {
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
+}
+
+.article-hero {
+    background: var(--accent-gradient);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.article-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-page .article-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.article-body {
+    padding: 4rem 2rem;
+}
+
+.article-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.article-content h2 {
+    font-size: 2rem;
+    margin: 2rem 0 1rem;
+    color: var(--text-dark);
+}
+
+.article-content h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--text-dark);
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-content code {
+    background: var(--bg-light);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+}
+
+.article-content pre {
+    background: var(--text-dark);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.article-content pre code {
+    background: transparent;
+    padding: 0;
+    color: white;
+}
+
+.article-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text-light);
+}
+
+.article-content ul, .article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-footer {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-share h4 {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.share-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-light);
+    border-radius: 50%;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.share-buttons a:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.back-to-articles a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s ease;
+}
+
+.back-to-articles a:hover {
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 2rem;
+    }
+    
+    .article-footer {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+</style>
