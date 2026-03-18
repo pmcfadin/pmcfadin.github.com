@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /robots.txt
+---
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /articles/
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: ClaudeBot
+Allow: /articles/
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: anthropic-ai
+Allow: /articles/
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: PerplexityBot
+Allow: /articles/
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+Sitemap: {{ "/sitemap.xml" | absolute_url }}

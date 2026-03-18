@@ -1,0 +1,13 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+## Articles
+{% assign sorted_articles = site.articles | sort: 'date' | reverse %}
+{% for article in sorted_articles %}
+- [{{ article.title }}](https://raw.githubusercontent.com/pmcfadin/pmcfadin.github.com/main/{{ article.path }}): {{ article.excerpt | strip_html | truncate: 200 }}
+{% endfor %}

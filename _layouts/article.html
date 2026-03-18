@@ -14,6 +14,9 @@ layout: default
                 {% if page.reading_time %}
                 <span><i class="far fa-clock"></i> {{ page.reading_time }} min read</span>
                 {% endif %}
+                <button class="copy-markdown-btn" data-article-title="{{ page.title }}" data-article-date="{{ page.date | date: '%B %d, %Y' }}" data-article-url="{{ page.url | absolute_url }}">
+                    <i class="far fa-copy"></i> Copy as Markdown
+                </button>
             </div>
         </div>
     </div>
@@ -231,6 +234,36 @@ layout: default
     color: var(--accent-light);
 }
 
+.copy-markdown-btn {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    background: transparent;
+    border: 1px solid var(--accent-dim);
+    border-radius: 6px;
+    color: var(--accent);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy-markdown-btn:hover {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
+}
+
+.copy-markdown-btn.copied {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
+}
+
 @media (max-width: 768px) {
     .article-title {
         font-size: 2rem;
@@ -239,6 +272,10 @@ layout: default
     .article-page .article-meta {
         flex-wrap: wrap;
         gap: 0.75rem;
+    }
+
+    .copy-markdown-btn {
+        margin-left: 0;
     }
 
     .article-footer {

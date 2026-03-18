@@ -79,6 +79,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Copy as Markdown button handler
+document.addEventListener('DOMContentLoaded', function() {
+    const copyBtn = document.querySelector('.copy-markdown-btn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+            const title = this.dataset.articleTitle;
+            const date = this.dataset.articleDate;
+            const url = this.dataset.articleUrl;
+            const articleContent = document.querySelector('.article-content');
+
+            var turndownService = new TurndownService({
+                headingStyle: 'atx',
+                codeBlockStyle: 'fenced'
+            });
+
+            var markdown = turndownService.turndown(articleContent.innerHTML);
+
+            var header = '# ' + title + '\n\n'
+                + '**Patrick McFadin** | **' + date + '** | **[Source](' + url + ')**\n\n---\n\n';
+
+            var fullMarkdown = header + markdown;
+
+            navigator.clipboard.writeText(fullMarkdown).then(function() {
+                var icon = copyBtn.querySelector('i');
+                var originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(function() {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    }
+});
+
 // Active navigation link highlighting
 window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('section[id]');

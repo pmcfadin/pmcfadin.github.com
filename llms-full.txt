@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /llms-full.txt
+---
+# {{ site.title }} - Full Article Content
+
+> {{ site.description }}
+
+{% assign sorted_articles = site.articles | sort: 'date' | reverse %}{% for article in sorted_articles %}
+---
+
+## {{ article.title }}
+
+- **Date:** {{ article.date | date: "%Y-%m-%d" }}
+- **Category:** {{ article.category }}
+- **URL:** {{ article.url | absolute_url }}
+
+{{ article.content }}
+{% endfor %}
