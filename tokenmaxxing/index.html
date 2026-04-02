@@ -162,11 +162,18 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
     font-weight: 500;
     color: #4caf7d;
   }
+  .tm-card-desc {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
   .tm-card-use-case {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-size: 0.82rem;
     margin-bottom: 22px;
     line-height: 1.5;
+    font-family: 'JetBrains Mono', monospace;
   }
 
   /* Before/after flow */
@@ -467,6 +474,15 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
     'fastmod':  'https://github.com/facebookincubator/fastmod',
   };
 
+  const TOOL_DESCRIPTIONS = {
+    'qmd':      'Retrieves exact code passages by line range using semantic embeddings. Returns only the lines you need — not the whole file.',
+    'ripgrep':  'Searches file contents with regex and returns matching lines or file paths only. Orders of magnitude faster than grep.',
+    'rtk':      'A shell command proxy that strips noisy output — timestamps, permissions, owner fields — before it reaches the LLM context window.',
+    'ast-grep': 'Finds and rewrites code using AST patterns. Matches code structure, not raw text, so renames never clobber string literals or comments.',
+    'comby':    'Structural search-and-replace using lightweight templates that work across many languages without a full parser.',
+    'fastmod':  'Codebase-wide find-and-replace with file extension filtering. Safer and faster than sed for large refactors.',
+  };
+
   function fmt(n) { return Number(n).toLocaleString(); }
   function pct(r) { return r != null ? (r * 100).toFixed(0) + '%' : '—'; }
 
@@ -551,6 +567,7 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
     card.className = 'tm-card';
     const safeCmd = tool.sample_command.replace(/'/g, "\\'");
     const projectUrl = TOOL_URLS[tool.family] || '';
+    const description = TOOL_DESCRIPTIONS[tool.family] || '';
     const linkHtml = projectUrl
       ? `<a class="tm-card-link" href="${projectUrl}" target="_blank" rel="noopener">↗ project</a>`
       : '';
@@ -562,7 +579,8 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
           <span class="tm-card-pct">${tool.reduction_pct}% reduction</span>
         </span>
       </div>
-      <div class="tm-card-use-case">${tool.use_case}</div>
+      ${description ? `<div class="tm-card-desc">${description}</div>` : ''}
+      <div class="tm-card-use-case">Benchmarked for: ${tool.use_case}</div>
       <div class="tm-card-flow">
         <div class="tm-tok-box tok-raw">
           <div class="tb-lbl">Raw tokens in</div>
