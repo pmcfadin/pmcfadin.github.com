@@ -290,6 +290,54 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
     margin-top: 8px;
   }
 
+  /* ── Chart ── */
+  .tm-chart-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 20px;
+    margin-bottom: 36px;
+  }
+  .tm-chart-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .tm-chart-legend span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .tm-chart-legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .tm-chart-legend .dot-raw { background: #e05c5c; }
+  .tm-chart-legend .dot-reduced { background: #4caf7d; }
+  .tm-chart-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    text-align: right;
+  }
+
+  /* ── Tool link ── */
+  .tm-card-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    opacity: 0.8;
+    flex-shrink: 0;
+  }
+  .tm-card-link:hover { opacity: 1; text-decoration: none; color: var(--accent-light); }
+
   /* ── Loading ── */
   .tm-loading {
     font-family: 'JetBrains Mono', monospace;
@@ -370,6 +418,14 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
         Ordered by token reduction, highest first. All runs are deterministic — same input, same output, every time.
       </p>
       <div id="tm-generated" class="tm-generated"></div>
+      <div class="tm-chart-wrap">
+        <div class="tm-chart-legend">
+          <span><span class="dot dot-raw"></span>Without tool (raw tokens)</span>
+          <span><span class="dot dot-reduced"></span>With tool (reduced tokens)</span>
+        </div>
+        <canvas id="tm-chart" height="260"></canvas>
+        <div class="tm-chart-note">Y-axis: log scale (token counts vary widely across tools)</div>
+      </div>
       <div id="tm-cards" class="tm-cards">
         <div class="tm-loading">Loading benchmark data…</div>
       </div>
@@ -400,7 +456,17 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 <script>
+  const TOOL_URLS = {
+    'qmd':      'https://github.com/tobi/qmd',
+    'ripgrep':  'https://github.com/BurntSushi/ripgrep',
+    'rtk':      'https://github.com/rtk-ai/rtk',
+    'ast-grep': 'https://github.com/ast-grep/ast-grep',
+    'comby':    'https://github.com/comby-tools/comby',
+    'fastmod':  'https://github.com/facebookincubator/fastmod',
+  };
+
   function fmt(n) { return Number(n).toLocaleString(); }
   function pct(r) { return r != null ? (r * 100).toFixed(0) + '%' : '—'; }
 
@@ -412,14 +478,89 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
     });
   }
 
+  function renderChart(tools) {
+    const labels = tools.map(t => t.family);
+    const raw = tools.map(t => t.avg_raw_tokens);
+    const reduced = tools.map(t => t.avg_reduced_tokens);
+    const ctx = document.getElementById('tm-chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Without tool',
+            data: raw,
+            backgroundColor: 'rgba(224, 92, 92, 0.75)',
+            borderColor: 'rgba(224, 92, 92, 1)',
+            borderWidth: 1,
+            borderRadius: 3,
+          },
+          {
+            label: 'With tool',
+            data: reduced,
+            backgroundColor: 'rgba(76, 175, 125, 0.75)',
+            borderColor: 'rgba(76, 175, 125, 1)',
+            borderWidth: 1,
+            borderRadius: 3,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1c1f29',
+            borderColor: '#262a35',
+            borderWidth: 1,
+            titleColor: '#e4e2de',
+            bodyColor: '#9b9da4',
+            titleFont: { family: "'JetBrains Mono', monospace", size: 12 },
+            bodyFont: { family: "'JetBrains Mono', monospace", size: 11 },
+            callbacks: {
+              label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} tokens`,
+            },
+          },
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(38, 42, 53, 0.8)' },
+            ticks: {
+              color: '#9b9da4',
+              font: { family: "'JetBrains Mono', monospace", size: 11 },
+            },
+          },
+          y: {
+            type: 'logarithmic',
+            grid: { color: 'rgba(38, 42, 53, 0.8)' },
+            ticks: {
+              color: '#9b9da4',
+              font: { family: "'JetBrains Mono', monospace", size: 11 },
+              callback: v => v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v,
+            },
+          },
+        },
+      },
+    });
+  }
+
   function renderCard(tool) {
     const card = document.createElement('div');
     card.className = 'tm-card';
     const safeCmd = tool.sample_command.replace(/'/g, "\\'");
+    const projectUrl = TOOL_URLS[tool.family] || '';
+    const linkHtml = projectUrl
+      ? `<a class="tm-card-link" href="${projectUrl}" target="_blank" rel="noopener">↗ project</a>`
+      : '';
     card.innerHTML = `
       <div class="tm-card-header">
         <span class="tm-card-family">${tool.family}</span>
-        <span class="tm-card-pct">${tool.reduction_pct}% reduction</span>
+        <span style="display:flex;align-items:baseline;gap:16px;">
+          ${linkHtml}
+          <span class="tm-card-pct">${tool.reduction_pct}% reduction</span>
+        </span>
       </div>
       <div class="tm-card-use-case">${tool.use_case}</div>
       <div class="tm-card-flow">
@@ -464,6 +605,7 @@ description: Real before/after token benchmarks for six CLI tools that slash LLM
           (data.repo_commit ? ' · commit ' + data.repo_commit.slice(0, 7) : '');
       }
       const tools = (data.tools || []).slice().sort((a, b) => b.reduction_pct - a.reduction_pct);
+      renderChart(tools);
       tools.forEach(tool => container.appendChild(renderCard(tool)));
     })
     .catch(err => {
