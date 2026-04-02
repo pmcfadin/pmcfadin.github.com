@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-04-02T18:08:09.187571+00:00",
+  "repo_commit": "0269fd5665751e8a6d8eab852e0f66c142b10ee6",
+  "tools": [
+    {
+      "family": "qmd",
+      "use_case": "Use qmd to retrieve the exact passage that explains Cassandra's gossip target selection during one round",
+      "sample_command": "qmd get src/java/org/apache/cassandra/gms/Gossiper.java:361 -l 24",
+      "avg_raw_tokens": 24437,
+      "avg_reduced_tokens": 188,
+      "reduction_pct": 99.2,
+      "deterministic_pass_rate": 1.0
+    },
+    {
+      "family": "ripgrep",
+      "use_case": "Use ripgrep to identify the exact read repair implementation source file, the configuration reference, and one validating test file",
+      "sample_command": "ripgrep -l read_repair_chance .",
+      "avg_raw_tokens": 1043,
+      "avg_reduced_tokens": 48,
+      "reduction_pct": 95.4,
+      "deterministic_pass_rate": 1.0
+    },
+    {
+      "family": "rtk",
+      "use_case": "Use rtk ls to produce a compact directory listing of the Cassandra db package (45 source files)",
+      "sample_command": "rtk ls cassandra-db/",
+      "avg_raw_tokens": 12284,
+      "avg_reduced_tokens": 648,
+      "reduction_pct": 94.7,
+      "deterministic_pass_rate": 1.0
+    },
+    {
+      "family": "ast-grep",
+      "use_case": "Use ast-grep to perform an AST-aware rename of all call sites of DatabaseDescriptor",
+      "sample_command": "ast-grep run --pattern DatabaseDescriptor.getReadRepairChance() --rewrite ReadRepairConfig.getChance() --lang java -U .",
+      "avg_raw_tokens": 2436,
+      "avg_reduced_tokens": 162,
+      "reduction_pct": 93.3,
+      "deterministic_pass_rate": 1.0
+    },
+    {
+      "family": "comby",
+      "use_case": "Use comby to rename all occurrences of DatabaseDescriptor",
+      "sample_command": "comby DatabaseDescriptor.getReadRepairChance() ReadRepairConfig.getChance() .java -diff -matcher .java",
+      "avg_raw_tokens": 1879,
+      "avg_reduced_tokens": 308,
+      "reduction_pct": 83.6,
+      "deterministic_pass_rate": 1.0
+    },
+    {
+      "family": "fastmod",
+      "use_case": "Use fastmod to rename all occurrences of read_repair_chance to read_repair_probability across the Java source, configuration, and test files for the Cassandra read repair subsystem",
+      "sample_command": "fastmod --accept-all --fixed-strings read_repair_chance read_repair_probability -e java,yaml .",
+      "avg_raw_tokens": 2436,
+      "avg_reduced_tokens": 850,
+      "reduction_pct": 65.1,
+      "deterministic_pass_rate": 1.0
+    }
+  ]
+}
